@@ -78,7 +78,7 @@ class XGBWrapper:
 
 
 def get_prepared_adult_data():
-    dataset = pd.read_csv('../works/data/adult.csv')
+    dataset = pd.read_csv('../datasets/adult.csv')
     dataset['income'] = dataset['income'].map({'<=50K': 0, '<=50K.': 0, '>50K': 1, '>50K': 1})
     dataset['workclass'] = dataset['workclass'].replace(['?'], 'Unknown')
     dataset['marital-status'] = dataset['marital-status'].replace(
@@ -93,7 +93,7 @@ def get_prepared_adult_data():
 
 
 def get_balanced_adult_data():
-    dataset = pd.read_csv('../works/data/adult.csv')
+    dataset = pd.read_csv('../datasets/adult.csv')
     encoder = LabelEncoder()
     dataset['income'] = encoder.fit_transform(dataset['income'])
     dataset['native-country'] = np.where(dataset['native-country'] == 'United-States', 1, 0)
@@ -178,7 +178,7 @@ if __name__ == '__main__':
     # #############################################################
     # #     DIABETES DATASET     ##################################
     # #############################################################
-    # # diabetes = pd.read_csv('../works/data/diabetes.csv')
+    # # diabetes = pd.read_csv('../datasets/diabetes.csv')
     # # Y = diabetes.Outcome
     # # diabetes.drop(labels=['Outcome'], axis=1, inplace=True)
     # # X = diabetes
@@ -318,7 +318,7 @@ if __name__ == '__main__':
     #############################################################
     #     DIABETES DATASET     ##################################
     #############################################################
-    diabetes = pd.read_csv('../works/data/diabetes.csv')
+    diabetes = pd.read_csv('../datasets/diabetes.csv')
     Y_diabetes = diabetes.Outcome
     diabetes.drop(labels=['Outcome'], axis=1, inplace=True)
     X_diabetes = diabetes

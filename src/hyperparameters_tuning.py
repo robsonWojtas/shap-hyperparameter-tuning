@@ -14,12 +14,8 @@ import random
 import pickle
 
 
-def increase_parameter(value, multiplier):
-    return value * multiplier
-
-
 def load_adult():
-    dataset = pd.read_csv('../works/data/adult.csv')
+    dataset = pd.read_csv('../datasets/adult.csv')
     encoder = LabelEncoder()
     dataset['income'] = encoder.fit_transform(dataset['income'])
     dataset['native-country'] = np.where(dataset['native-country'] == 'United-States', 1, 0)
@@ -105,7 +101,7 @@ def load_breast_cancer():
 
 
 def load_diabetes():
-    diabetes = pd.read_csv('../works/data/diabetes.csv')
+    diabetes = pd.read_csv('../datasets/diabetes.csv')
     y = diabetes.Outcome
     diabetes.drop(labels=['Outcome'], axis=1, inplace=True)
     x = diabetes
@@ -118,7 +114,7 @@ def load_diabetes():
 
 
 def load_california():
-    x = pd.read_csv('../works/data/housing.csv')
+    x = pd.read_csv('../datasets/housing.csv')
     x.dropna(subset=['total_bedrooms'], inplace=True)
     x['median_house_value'] = np.where(x['median_house_value'] >= 179700, 1, 0)
     x.drop(labels=['ocean_proximity'], axis=1, inplace=True)
@@ -135,9 +131,6 @@ def get_random_parameters(parameters):
 
 
 if __name__ == '__main__':
-    # {'mode': 'xgb', 'kernel': '', 'data': 'adult'}, {'mode': 'svm', 'kernel': 'linear', 'data': 'adult'},
-    #         {'mode': 'svm', 'kernel': 'poly', 'data': 'adult'}, {'mode': 'svm', 'kernel': 'rbf', 'data': 'adult'},
-    #         {'mode': 'svm', 'kernel': 'sigmoid', 'data': 'adult'},
     setups = [
         {'mode': 'svm', 'kernel': 'linear', 'data': 'california'},
         {'mode': 'svm', 'kernel': 'poly', 'data': 'california'},
